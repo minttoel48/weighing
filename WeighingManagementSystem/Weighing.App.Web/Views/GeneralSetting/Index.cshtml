@@ -1,0 +1,110 @@
+﻿@using OanTech.Paging;
+@model Weighing.App.Web.ViewModels.GeneralSettingViewPaging
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-toolbar">
+
+    <div class="page-toolbar-block">
+		<div class="page-toolbar-title">@ViewBag.FormName</div>
+        <div class="page-toolbar-subtitle">@ViewBag.FormDescription</div>
+    </div>
+	
+	@* === WEBSITE PATH === *@
+    @*<ul class="breadcrumb">
+        <li><a href="#">@ViewBag.FormName</a></li>
+        <li class="active">@ViewBag.ViewName</li>
+    </ul>*@
+	
+	@* === BUTTON FORM === *@
+    <div class="page-toolbar-block pull-right">
+        <div class="widget-info widget-from">
+            <a class="btn btn-primary" href="@Url.Content("~/GeneralSetting/Create")"><i class="fa fa-plus"></i> New</a>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-head">
+                <h2>@ViewBag.FormName Data</h2>
+            </div>
+            <div class="block-content np">
+                <br />
+                <table>
+                    <tr>
+                        @using (Html.BeginForm("Index", "GeneralSetting", FormMethod.Get))
+                        {
+                            <td>
+                                <div align="right">
+                                    <p>
+                                        Search: @Html.TextBox("Filter", ViewBag.cFilter as string)
+                                        <input type="submit" value="Search" />
+                                    </p>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                </table>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th width="20%">
+                            @Html.ActionLink("Codenya", "Index", new { sortKey = "GSCode", sortDir = ViewBag.SortDir, cFilter = ViewBag.cFilter })
+                        </th>
+                        <th width="20%">
+                            @Html.ActionLink("Key-nya", "Index", new { sortKey = "GSKey", sortDir = ViewBag.SortDir, cFilter = ViewBag.cFilter })
+                        </th>
+                        <th width="20%">
+                            @Html.ActionLink("Value-nya", "Index", new { sortKey = "GSValue", sortDir = ViewBag.SortDir, cFilter = ViewBag.cFilter })
+                        </th>
+                        <th width="20%">
+                            Action
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.Data)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GSCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GSKey)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GSValue)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.GeneralSettingId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.GeneralSettingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.GeneralSettingId })
+                            </td>
+                        </tr>
+                    }
+                </table>
+				<div class="sp"></div>
+                <table>
+                    <tr>
+                        <td>
+                            Page @(Model.Paging.PageCount < Model.Paging.PageNumber ? 0 : Model.Paging.PageNumber) of @Model.Paging.PageCount
+                        </td>
+                        <td>
+                            <div align="right">
+                                @Html.PagingHelperPagination(Model.Paging, page => Url.Action("Index", new { page, sortKey = ViewBag.SortKey, cSortDir = ViewBag.cSortDir, cFilter = ViewBag.cFilter }))
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+@*This View is Auto Generate by OanTech - April 2017*@

@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OAN Technology - @ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    @Styles.Render("~/Content/css/styles.css")
+
+
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery-ui.min.js")
+    @Scripts.Render("~/Scripts/plugins/bootstrap/bootstrap.min.js")
+    @Styles.Render("~/Content/css/jquery.dataTables.min.css")
+    @Scripts.Render("~/Scripts/plugins/datatables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js")
+    @Scripts.Render("~/Scripts/plugins/select2/select2.min.js")
+    @Scripts.Render("~/Scripts/plugins/tagsinput/jquery.tagsinput.min.js")
+    @Scripts.Render("~/Scripts/plugins/icheck/jquery.icheck.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery-ui-timepicker-addon.js")
+    @Scripts.Render("~/Scripts/plugins/daterangepicker/moment.min.js")
+    @Scripts.Render("~/Scripts/plugins/daterangepicker/daterangepicker.js")
+    @Scripts.Render("~/Scripts/plugins/chained/jquery.chained.min.js")
+    @Scripts.Render("~/Scripts/plugins.js")
+    @Scripts.Render("~/Scripts/demo.js")
+    @Scripts.Render("~/Scripts/actions.js")
+    @Scripts.Render("~/Scripts/fontawesome-iconpicker.js")
+    
+</head>
+<body>
+
+    <div class="page-container">
+
+        <div class="page-head">
+
+            <ul class="page-head-elements">
+                <li><a href="#" class="page-navigation-toggle"><span class="fa fa-bars"></span></a></li>
+                <li class="search">
+                    <input type="text" class="form-control" placeholder="Search..." />
+                </li>
+            </ul>
+            @*<ul class="page-head-elements pull-right">
+                    <li><a href="#" class="page-sidebar-toggle"><span class="fa fa-tasks"></span></a></li>
+                </ul>*@
+
+        </div>
+
+        @if (Request.Cookies["NavBar"] != null)
+        {
+            var navbar = Request.Cookies["NavBar"].Value;
+            if (navbar == "Opened")
+            {
+                <text>
+                    <div class="page-navigation">
+                </text>
+            }
+            else if (navbar == "Closed")
+            {
+                <text>
+                    <div class="page-navigation page-navigation-closed">
+                </text>
+            }
+        }
+        else
+        {
+            <text>
+                <div class="page-navigation">
+            </text>
+        }
+
+        <div class="profile">
+            <img src="~/Content/img/samples/users/ben.jpg" />
+            <div class="profile-info">
+                <a href="#" class="profile-title">Hi, @Convert.ToString(Session["DisplayName"])</a>
+                <span class="profile-subtitle">@Convert.ToString(Session["Role"])</span>
+                <div class="profile-buttons">
+                    <div class="btn-group">
+                        <a class="but dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation" class="dropdown-header">Profile Menu</li>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Change Password</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Account/Login">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="navigation">
+            <li class="active"><a href="/Home/PageHelper"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li>
+                <a href="#"><i class="fa fa-pencil"></i>Menu 1</a>
+                <ul>
+                    <li><a href="/Template/DataTable">Data Table Lazy Load</a></li>
+                    <li><a href="/Home/About">Sub Menu 2</a></li>
+                    <li><a href="/Home/About">Sub Menu 3</a></li>
+                    <li><a href="/Home/About">Sub Menu 4</a></li>
+                    <li><a href="/Home/About">Sub Menu 5</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-cogs"></i>Menu 2</a>
+                <ul>
+                    <li><a href="/Home/About">Sub Menu 1</a></li>
+                    <li><a href="/Home/About">Sub Menu 2</a></li>
+                    <li><a href="/Home/About">Sub Menu 3</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="page-content">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    @*<div class="page-sidebar">
+
+        </div>*@
+</div>
+
+</body>
+</html>

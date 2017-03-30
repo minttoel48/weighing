@@ -1,0 +1,113 @@
+﻿@using OanTech.Paging;
+
+@model  OANTech.Web.ViewModel.UserRoleViewPaging
+
+@{
+    ViewBag.Title = "DataTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-toolbar">
+
+    <div class="page-toolbar-block">
+        <div class="page-toolbar-title">Lazy Loading Table</div>
+    </div>
+
+    <div class="page-toolbar-block pull-right">
+        <div class="widget-info widget-from">
+            <button class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
+            <button class="btn btn-primary"><i class="fa fa-cog"></i> Settings</button>
+            <button class="btn btn-danger"><i class="fa fa-power-off"></i> Exit</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-content">
+                <h2><strong>Input</strong> Elements</h2>
+            </div>
+            <div class="block-content np">
+                <table>
+                    <tr>
+                        @using (Html.BeginForm("DataTable", "Template", FormMethod.Get))
+                        {
+                            <td>
+                                <div align="left">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control datepicker" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div align="right">
+                                    <p>
+                                        Search: @Html.TextBox("Filter", ViewBag.cFilter as string)
+                                        <input type="submit" value="Search" />
+                                    </p>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                </table>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th width="20%">
+                            @Html.ActionLink("First Name", "DataTable", new { sortKey = "RoleName", sortDir = ViewBag.SortDir, cFilter = ViewBag.cFilter })
+                        </th>
+                        <th width="20%">
+                            @Html.ActionLink("Last Name", "DataTable", new { sortKey = "RoleName", sortDir = ViewBag.SortDir, cFilter = ViewBag.cFilter })
+                        </th>
+                        <th width="15%">
+                            @Html.ActionLink("Birth Date", "DataTable", new { sortKey = "Date", sortDir = ViewBag.SortDir, cFilter = ViewBag.cFilter })
+                        </th>
+                        <th width="25%">
+                            @Html.ActionLink("Email", "DataTable", new { sortKey = "RoleName", sortDir = ViewBag.SortDir, cFilter = ViewBag.cFilter })
+                        </th>
+                        <th width="20%">
+                            Action
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.Data)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BirthDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.RoleId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.RoleId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.RoleId })
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            Page @(Model.Paging.PageCount < Model.Paging.PageNumber ? 0 : Model.Paging.PageNumber) of @Model.Paging.PageCount
+                        </td>
+                        <td>
+                            <div align="right">
+                                @Html.PagingHelperPagination(Model.Paging, page => Url.Action("DataTable", new { page, sortKey = ViewBag.SortKey, cSortDir = ViewBag.cSortDir, cFilter = ViewBag.cFilter }))
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weighing Management System - @ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    @Styles.Render("~/Content/css/styles.css")
+
+
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery-ui.min.js")
+    @Scripts.Render("~/Scripts/plugins/bootstrap/bootstrap.min.js")
+    @Styles.Render("~/Content/css/jquery.dataTables.min.css")
+    @Scripts.Render("~/Scripts/plugins/datatables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js")
+    @Scripts.Render("~/Scripts/plugins/select2/select2.min.js")
+    @Scripts.Render("~/Scripts/plugins/tagsinput/jquery.tagsinput.min.js")
+    @Scripts.Render("~/Scripts/plugins/icheck/jquery.icheck.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery-ui-timepicker-addon.js")
+    @Scripts.Render("~/Scripts/plugins/daterangepicker/moment.min.js")
+    @Scripts.Render("~/Scripts/plugins/daterangepicker/daterangepicker.js")
+    @Scripts.Render("~/Scripts/plugins/chained/jquery.chained.min.js")
+    @Scripts.Render("~/Scripts/plugins.js")
+    @Scripts.Render("~/Scripts/demo.js")
+    @Scripts.Render("~/Scripts/actions.js")
+    @Scripts.Render("~/Scripts/fontawesome-iconpicker.js")
+
+    <style>
+        .modal-content {
+            width: 600px !important;
+            margin: 30px auto !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="page-container">
+
+        <div class="page-head">
+
+            <ul class="page-head-elements">
+                <li><a href="#" class="page-navigation-toggle"><span class="fa fa-bars"></span></a></li>
+                <li class="search">
+                    <input type="text" class="form-control" placeholder="Search..." />
+                </li>
+            </ul>
+            <ul class="pull-right">
+                @*<li><a href="#" class="page-sidebar-toggle"><span class="fa fa-tasks"></span></a></li>*@
+                <li>
+                    <a class="logo" href="/Home/Index"></a>
+                </li>
+            </ul>
+
+        </div>
+
+        @if (Request.Cookies["NavBar"] != null)
+            {
+                var navbar = Request.Cookies["NavBar"].Value;
+                if (navbar == "Opened")
+                {
+                <text>
+                    <div class="page-navigation">
+                </text>
+            }
+            else if (navbar == "Closed")
+            {
+                <text>
+                    <div class="page-navigation page-navigation-closed">
+                </text>
+            }
+        }
+        else
+        {
+            <text>
+                <div class="page-navigation">
+            </text>
+        }
+
+        @*<div class="page-navigation-info">
+                <a class="logo" href="#">Kalbe Nutritionals</a>
+            </div>*@
+
+        <div class="profile">
+            <img src="~/Content/img/samples/users/ben.jpg" />
+            <div class="profile-info">
+                <span class="profile-title">Hi, @Convert.ToString(Session["DisplayName"])</span>
+                <span class="profile-subtitle">@Convert.ToString(Session["Role"])</span>
+                <div class="profile-buttons">
+                    <div class="btn-group">
+                        <a class="but dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation" class="dropdown-header">Profile Menu</li>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Change Password</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Account/Login">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <ul class="navigation">
+            <li class="active"><a href="/Home/PageHelper"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            @* DEBAGGING NON TIMBANG *@
+            <li>
+                <a href="#"><i class="fa fa-pencil"></i>Debagging Non Timbang</a>
+                <ul>
+                    <li><a href="/Debagging/Transact">Transact Task</a></li>
+                    <li><a href="/Debagging/Reprint">Reprint</a></li>
+                </ul>
+            </li>
+
+            @* MATERIAL PREPARATION *@
+            <li>
+                <a href="#"><i class="fa fa-pencil"></i>Material Preparation</a>
+                <ul>
+                    <li><a href="/Debagging/Transact">Request</a></li>
+                    <li><a href="/Debagging/Reprint">Supply</a></li>
+                </ul>
+            </li>
+
+            @* CONSOLIDATION *@
+            <li>
+                <a href="#"><i class="fa fa-pencil"></i>Konsolidasi</a>
+                <ul>
+                    <li><a href="/Debagging/Transact">Request</a></li>
+                    <li><a href="/Debagging/Reprint">Supply</a></li>
+                </ul>
+            </li>
+
+            @* PACKAGING *@
+            <li>
+                <a href="#"><i class="fa fa-pencil"></i>Packaging</a>
+                <ul>
+                    <li><a href="/Debagging/Transact">Request</a></li>
+                    <li><a href="/Debagging/Reprint">Supply</a></li>
+                </ul>
+            </li>
+
+            @* CONSUMPTION *@
+            <li>
+                <a href="#"><i class="fa fa-pencil"></i>Consumption</a>
+                <ul>
+                    <li><a href="/Debagging/Transact">Request</a></li>
+                    <li><a href="/Debagging/Reprint">Supply</a></li>
+                </ul>
+            </li>
+
+            @* SETTING *@
+            <li>
+                <a href="#"><i class="fa fa-cog"></i>Setting</a>
+                <ul>
+                    <li><a href="/GeneralSetting/Index">General Setting</a></li>
+                    <li><a href="/Terminal/Setting">Terminal Setting</a></li>
+                </ul>
+            </li>
+
+            @* ACCOUNT MANAGEMENT *@
+            <li>
+                <a href="#"><i class="fa fa-cog"></i>Account Management</a>
+                <ul>
+                    <li><a href="/Debagging/Transact">User Management</a></li>
+                    <li><a href="/GeneralSetting/Index">Role Setting</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+    @*<div class="page-sidebar">
+        </div>*@
+</div>
+</div>
+
+
+
+<div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+
+
+<script type="text/javascript">
+    $(function () {
+        // Initialize numeric spinner input boxes
+        //$(".numeric-spinner").spinedit();
+
+        // Initalize modal dialog
+        // attach modal-container bootstrap attributes to links with .modal-link class.
+        // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+        $('body').on('click', '.modal-link', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-container').modal('hide');
+        });
+
+        //clear modal cache, so that new content can be loaded
+        $('#modal-container').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+</script>
+
+
+</body>
+</html>

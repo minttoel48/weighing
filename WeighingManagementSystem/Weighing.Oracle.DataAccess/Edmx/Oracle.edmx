@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OracleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="XSHP_TIMBANG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MO_HEADER_ID" Type="bigint" Nullable="false" />
+          <Property Name="MO_LINE_ID" Type="bigint" Nullable="false" />
+          <Property Name="MO_NUMBER" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MO_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LINE_NUMBER" Type="bigint" Nullable="false" />
+          <Property Name="FROM_SUBINVENTORY_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="TO_SUBINVENTORY_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="DATE_REQUIRED" Type="date" Nullable="false" />
+          <Property Name="SOURCE_TYPE" Type="varchar" MaxLength="10" />
+          <Property Name="DOC_NUMBER" Type="varchar" MaxLength="100" />
+          <Property Name="CUSTOMER" Type="varchar" MaxLength="100" />
+          <Property Name="SHIP_TO" Type="varchar" MaxLength="100" />
+          <Property Name="REQUESTOR" Type="varchar" MaxLength="100" />
+          <Property Name="ITEM_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="ITEM_DESC" Type="varchar" MaxLength="100" />
+          <Property Name="ITEM_DESC_ALIAS" Type="varchar" MaxLength="100" />
+          <Property Name="UOM" Type="varchar" MaxLength="5" />
+          <Property Name="QTY" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="URUTAN_TUANG" Type="int" />
+          <Property Name="QTY_PER_CHARGE" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="ACTIVITY" Type="varchar" MaxLength="100" />
+          <Property Name="COMBINE_LV1" Type="varchar" MaxLength="50" />
+          <Property Name="COMBINE_LV2" Type="varchar" MaxLength="50" />
+          <Property Name="PACKING_SIZE" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="SELF_LIFE" Type="int" Nullable="false" />
+          <Property Name="IS_TIMBANG" Type="bit" Nullable="false" />
+          <Property Name="IS_CLOSED_CODE" Type="bit" Nullable="false" />
+          <Property Name="IS_ALLERGEN" Type="bit" Nullable="false" />
+          <Property Name="IS_PROCESSED" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XSHP_TIMBANG_ALOKASI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MO_HEADER_ID" Type="bigint" Nullable="false" />
+          <Property Name="MO_LINE_ID" Type="bigint" Nullable="false" />
+          <Property Name="TRANSACTION_TEMP_ID" Type="bigint" Nullable="false" />
+          <Property Name="ITEM_CODE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LOT_NO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LOT_QTY" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="EXPIRATION_DATE" Type="date" Nullable="false" />
+          <Property Name="IS_PROCESSED" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="OracleModelStoreContainer">
+          <EntitySet Name="XSHP_TIMBANG" EntityType="Self.XSHP_TIMBANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XSHP_TIMBANG_ALOKASI" EntityType="Self.XSHP_TIMBANG_ALOKASI" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OracleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="XSHP_TIMBANG_ALOKASI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MO_HEADER_ID" Type="Int64" Nullable="false" />
+          <Property Name="MO_LINE_ID" Type="Int64" Nullable="false" />
+          <Property Name="TRANSACTION_TEMP_ID" Type="Int64" Nullable="false" />
+          <Property Name="ITEM_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOT_NO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOT_QTY" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="EXPIRATION_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IS_PROCESSED" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="OracleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="XSHP_TIMBANG_ALOKASI" EntityType="Self.XSHP_TIMBANG_ALOKASI" />
+          <EntitySet Name="XSHP_TIMBANG" EntityType="OracleModel.XSHP_TIMBANG" />
+        </EntityContainer>
+        <EntityType Name="XSHP_TIMBANG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MO_HEADER_ID" Type="Int64" Nullable="false" />
+          <Property Name="MO_LINE_ID" Type="Int64" Nullable="false" />
+          <Property Name="MO_NUMBER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MO_TYPE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LINE_NUMBER" Type="Int64" Nullable="false" />
+          <Property Name="FROM_SUBINVENTORY_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TO_SUBINVENTORY_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_REQUIRED" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SOURCE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_NUMBER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SHIP_TO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="REQUESTOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ITEM_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ITEM_DESC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ITEM_DESC_ALIAS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UOM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="QTY" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="URUTAN_TUANG" Type="Int32" />
+          <Property Name="QTY_PER_CHARGE" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="ACTIVITY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="COMBINE_LV1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMBINE_LV2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PACKING_SIZE" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="SELF_LIFE" Type="Int32" Nullable="false" />
+          <Property Name="IS_TIMBANG" Type="Boolean" Nullable="false" />
+          <Property Name="IS_CLOSED_CODE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_ALLERGEN" Type="Boolean" Nullable="false" />
+          <Property Name="IS_PROCESSED" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OracleModelStoreContainer" CdmEntityContainer="OracleEntities">
+          <EntitySetMapping Name="XSHP_TIMBANG_ALOKASI">
+            <EntityTypeMapping TypeName="OracleModel.XSHP_TIMBANG_ALOKASI">
+              <MappingFragment StoreEntitySet="XSHP_TIMBANG_ALOKASI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MO_HEADER_ID" ColumnName="MO_HEADER_ID" />
+                <ScalarProperty Name="MO_LINE_ID" ColumnName="MO_LINE_ID" />
+                <ScalarProperty Name="TRANSACTION_TEMP_ID" ColumnName="TRANSACTION_TEMP_ID" />
+                <ScalarProperty Name="ITEM_CODE" ColumnName="ITEM_CODE" />
+                <ScalarProperty Name="LOT_NO" ColumnName="LOT_NO" />
+                <ScalarProperty Name="LOT_QTY" ColumnName="LOT_QTY" />
+                <ScalarProperty Name="EXPIRATION_DATE" ColumnName="EXPIRATION_DATE" />
+                <ScalarProperty Name="IS_PROCESSED" ColumnName="IS_PROCESSED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XSHP_TIMBANG">
+            <EntityTypeMapping TypeName="OracleModel.XSHP_TIMBANG">
+              <MappingFragment StoreEntitySet="XSHP_TIMBANG">
+                <ScalarProperty Name="IS_PROCESSED" ColumnName="IS_PROCESSED" />
+                <ScalarProperty Name="IS_ALLERGEN" ColumnName="IS_ALLERGEN" />
+                <ScalarProperty Name="IS_CLOSED_CODE" ColumnName="IS_CLOSED_CODE" />
+                <ScalarProperty Name="IS_TIMBANG" ColumnName="IS_TIMBANG" />
+                <ScalarProperty Name="SELF_LIFE" ColumnName="SELF_LIFE" />
+                <ScalarProperty Name="PACKING_SIZE" ColumnName="PACKING_SIZE" />
+                <ScalarProperty Name="COMBINE_LV2" ColumnName="COMBINE_LV2" />
+                <ScalarProperty Name="COMBINE_LV1" ColumnName="COMBINE_LV1" />
+                <ScalarProperty Name="ACTIVITY" ColumnName="ACTIVITY" />
+                <ScalarProperty Name="QTY_PER_CHARGE" ColumnName="QTY_PER_CHARGE" />
+                <ScalarProperty Name="URUTAN_TUANG" ColumnName="URUTAN_TUANG" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="ITEM_DESC_ALIAS" ColumnName="ITEM_DESC_ALIAS" />
+                <ScalarProperty Name="ITEM_DESC" ColumnName="ITEM_DESC" />
+                <ScalarProperty Name="ITEM_CODE" ColumnName="ITEM_CODE" />
+                <ScalarProperty Name="REQUESTOR" ColumnName="REQUESTOR" />
+                <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+                <ScalarProperty Name="CUSTOMER" ColumnName="CUSTOMER" />
+                <ScalarProperty Name="DOC_NUMBER" ColumnName="DOC_NUMBER" />
+                <ScalarProperty Name="SOURCE_TYPE" ColumnName="SOURCE_TYPE" />
+                <ScalarProperty Name="DATE_REQUIRED" ColumnName="DATE_REQUIRED" />
+                <ScalarProperty Name="TO_SUBINVENTORY_CODE" ColumnName="TO_SUBINVENTORY_CODE" />
+                <ScalarProperty Name="FROM_SUBINVENTORY_CODE" ColumnName="FROM_SUBINVENTORY_CODE" />
+                <ScalarProperty Name="LINE_NUMBER" ColumnName="LINE_NUMBER" />
+                <ScalarProperty Name="MO_TYPE" ColumnName="MO_TYPE" />
+                <ScalarProperty Name="MO_NUMBER" ColumnName="MO_NUMBER" />
+                <ScalarProperty Name="MO_LINE_ID" ColumnName="MO_LINE_ID" />
+                <ScalarProperty Name="MO_HEADER_ID" ColumnName="MO_HEADER_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

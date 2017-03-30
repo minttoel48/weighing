@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TerminalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MOQueue">
+          <Key>
+            <PropertyRef Name="MOQueueId" />
+          </Key>
+          <Property Name="MOQueueId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MoNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExecuteDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPriority" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UsrCrt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmCrt" Type="datetime" Nullable="false" />
+          <Property Name="UsrUpd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmUpd" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OracleHeader">
+          <Key>
+            <PropertyRef Name="OracleHeaderId" />
+          </Key>
+          <Property Name="OracleHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MOHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="MOLineId" Type="bigint" Nullable="false" />
+          <Property Name="MoNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LineNumber" Type="bigint" Nullable="false" />
+          <Property Name="FromSubInventoryCode" Type="varchar" MaxLength="50" />
+          <Property Name="ToSubInventoryCode" Type="varchar" MaxLength="50" />
+          <Property Name="DateRequired" Type="date" Nullable="false" />
+          <Property Name="SourceType" Type="varchar" MaxLength="10" />
+          <Property Name="DocNumber" Type="varchar" MaxLength="100" />
+          <Property Name="Customer" Type="varchar" MaxLength="100" />
+          <Property Name="ShipTo" Type="varchar" MaxLength="100" />
+          <Property Name="Requestor" Type="varchar" MaxLength="100" />
+          <Property Name="ItemCode" Type="varchar" MaxLength="50" />
+          <Property Name="ItemDesc" Type="varchar" MaxLength="100" />
+          <Property Name="ItemDescAlias" Type="varchar" MaxLength="100" />
+          <Property Name="UOM" Type="varchar" MaxLength="5" />
+          <Property Name="Qty" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="UrutanTuang" Type="int" />
+          <Property Name="QtyPerCharge" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Activity" Type="varchar" MaxLength="100" />
+          <Property Name="CombineL1" Type="varchar" MaxLength="50" />
+          <Property Name="CombineL2" Type="varchar" MaxLength="50" />
+          <Property Name="PackingSize" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="SelfLife" Type="int" Nullable="false" />
+          <Property Name="IsTimbang" Type="bit" Nullable="false" />
+          <Property Name="IsClosedCode" Type="bit" Nullable="false" />
+          <Property Name="IsAllergen" Type="bit" Nullable="false" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="UsrCrt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmCrt" Type="datetime" Nullable="false" />
+          <Property Name="UsrUpd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmUpd" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskTimbang">
+          <Key>
+            <PropertyRef Name="TaskTimbangId" />
+          </Key>
+          <Property Name="TaskTimbangId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Barcode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OracleHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="Seq" Type="int" Nullable="false" />
+          <Property Name="BagNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ItemCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="LotNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpirationDate" Type="date" Nullable="false" />
+          <Property Name="NewLotNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewExpirationDate" Type="date" Nullable="false" />
+          <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IsAllergen" Type="bit" Nullable="false" />
+          <Property Name="IsTimbang" Type="bit" Nullable="false" />
+          <Property Name="TerminalId" Type="varchar" MaxLength="10" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ExecuteDate" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+          <Property Name="UsrCrt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmCrt" Type="datetime" Nullable="false" />
+          <Property Name="UsrUpd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmUpd" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TerminalActive">
+          <Key>
+            <PropertyRef Name="TerminalActiveId" />
+          </Key>
+          <Property Name="TerminalActiveId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminalId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="Shift" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="UsrCrt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmCrt" Type="datetime" Nullable="false" />
+          <Property Name="UsrUpd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmUpd" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TerminalConfiguration">
+          <Key>
+            <PropertyRef Name="TerminalConfigurationId" />
+          </Key>
+          <Property Name="TerminalConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminalId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TerminalCategory" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TerminalGroup" Type="int" />
+          <Property Name="TerminalDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TerminalLocation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAllergen" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="UsrCrt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmCrt" Type="datetime" Nullable="false" />
+          <Property Name="UsrUpd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmUpd" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserLoginCode" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="UserLoginPin" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsLogin" Type="bit" Nullable="false" />
+          <Property Name="UsrCrt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmCrt" Type="datetime" Nullable="false" />
+          <Property Name="UsrUpd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtmUpd" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TaskTimbang_OracleHeader">
+          <End Role="OracleHeader" Type="Self.OracleHeader" Multiplicity="1" />
+          <End Role="TaskTimbang" Type="Self.TaskTimbang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleHeader">
+              <PropertyRef Name="OracleHeaderId" />
+            </Principal>
+            <Dependent Role="TaskTimbang">
+              <PropertyRef Name="OracleHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TerminalModelStoreContainer">
+          <EntitySet Name="MOQueue" EntityType="Self.MOQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OracleHeader" EntityType="Self.OracleHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskTimbang" EntityType="Self.TaskTimbang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerminalActive" EntityType="Self.TerminalActive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerminalConfiguration" EntityType="Self.TerminalConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TaskTimbang_OracleHeader" Association="Self.FK_TaskTimbang_OracleHeader">
+            <End Role="OracleHeader" EntitySet="OracleHeader" />
+            <End Role="TaskTimbang" EntitySet="TaskTimbang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TerminalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TaskTimbang">
+          <Key>
+            <PropertyRef Name="TaskTimbangId" />
+          </Key>
+          <Property Name="TaskTimbangId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Barcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OracleHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="Seq" Type="Int32" Nullable="false" />
+          <Property Name="BagNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="LotNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NewLotNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NewExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IsAllergen" Type="Boolean" Nullable="false" />
+          <Property Name="IsTimbang" Type="Boolean" Nullable="false" />
+          <Property Name="TerminalId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ExecuteDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UsrCrt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmCrt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrUpd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmUpd" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OracleHeader" Relationship="TerminalModel.FK_TaskTimbang_OracleHeader" FromRole="TaskTimbang" ToRole="OracleHeader" />
+        </EntityType>
+        <EntityType Name="TerminalActive">
+          <Key>
+            <PropertyRef Name="TerminalActiveId" />
+          </Key>
+          <Property Name="TerminalActiveId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminalId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="Shift" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="UsrCrt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmCrt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrUpd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmUpd" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TerminalConfiguration">
+          <Key>
+            <PropertyRef Name="TerminalConfigurationId" />
+          </Key>
+          <Property Name="TerminalConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminalId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TerminalCategory" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TerminalGroup" Type="Int32" />
+          <Property Name="TerminalDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TerminalLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsAllergen" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UsrCrt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmCrt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrUpd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmUpd" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserLoginCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserLoginPin" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsLogin" Type="Boolean" Nullable="false" />
+          <Property Name="UsrCrt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmCrt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrUpd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtmUpd" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="TerminalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TaskTimbangs" EntityType="Self.TaskTimbang" />
+          <EntitySet Name="TerminalActives" EntityType="Self.TerminalActive" />
+          <EntitySet Name="TerminalConfigurations" EntityType="Self.TerminalConfiguration" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="MOQueues" EntityType="TerminalModel.MOQueue" />
+          <EntitySet Name="OracleHeaders" EntityType="TerminalModel.OracleHeader" />
+          <AssociationSet Name="FK_TaskTimbang_OracleHeader" Association="TerminalModel.FK_TaskTimbang_OracleHeader">
+            <End Role="OracleHeader" EntitySet="OracleHeaders" />
+            <End Role="TaskTimbang" EntitySet="TaskTimbangs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MOQueue">
+          <Key>
+            <PropertyRef Name="MOQueueId" />
+          </Key>
+          <Property Name="MOQueueId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExecuteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsPriority" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UsrCrt" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtmCrt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrUpd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtmUpd" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="OracleHeader">
+          <Key>
+            <PropertyRef Name="OracleHeaderId" />
+          </Key>
+          <Property Name="OracleHeaderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MOHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="MOLineId" Type="Int64" Nullable="false" />
+          <Property Name="MoNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LineNumber" Type="Int64" Nullable="false" />
+          <Property Name="FromSubInventoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ToSubInventoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateRequired" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SourceType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DocNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShipTo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Requestor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ItemDescAlias" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UOM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="UrutanTuang" Type="Int32" />
+          <Property Name="QtyPerCharge" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Activity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CombineL1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CombineL2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PackingSize" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="SelfLife" Type="Int32" Nullable="false" />
+          <Property Name="IsTimbang" Type="Boolean" Nullable="false" />
+          <Property Name="IsClosedCode" Type="Boolean" Nullable="false" />
+          <Property Name="IsAllergen" Type="Boolean" Nullable="false" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="UsrCrt" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtmCrt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrUpd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtmUpd" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TaskTimbangs" Relationship="TerminalModel.FK_TaskTimbang_OracleHeader" FromRole="OracleHeader" ToRole="TaskTimbang" />
+        </EntityType>
+        <Association Name="FK_TaskTimbang_OracleHeader">
+          <End Type="TerminalModel.OracleHeader" Role="OracleHeader" Multiplicity="1" />
+          <End Type="TerminalModel.TaskTimbang" Role="TaskTimbang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleHeader">
+              <PropertyRef Name="OracleHeaderId" />
+            </Principal>
+            <Dependent Role="TaskTimbang">
+              <PropertyRef Name="OracleHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TerminalModelStoreContainer" CdmEntityContainer="TerminalEntities">
+          <EntitySetMapping Name="TaskTimbangs">
+            <EntityTypeMapping TypeName="TerminalModel.TaskTimbang">
+              <MappingFragment StoreEntitySet="TaskTimbang">
+                <ScalarProperty Name="TaskTimbangId" ColumnName="TaskTimbangId" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="OracleHeaderId" ColumnName="OracleHeaderId" />
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
+                <ScalarProperty Name="BagNo" ColumnName="BagNo" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="NewLotNo" ColumnName="NewLotNo" />
+                <ScalarProperty Name="NewExpirationDate" ColumnName="NewExpirationDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsAllergen" ColumnName="IsAllergen" />
+                <ScalarProperty Name="IsTimbang" ColumnName="IsTimbang" />
+                <ScalarProperty Name="TerminalId" ColumnName="TerminalId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExecuteDate" ColumnName="ExecuteDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UsrCrt" ColumnName="UsrCrt" />
+                <ScalarProperty Name="DtmCrt" ColumnName="DtmCrt" />
+                <ScalarProperty Name="UsrUpd" ColumnName="UsrUpd" />
+                <ScalarProperty Name="DtmUpd" ColumnName="DtmUpd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerminalActives">
+            <EntityTypeMapping TypeName="TerminalModel.TerminalActive">
+              <MappingFragment StoreEntitySet="TerminalActive">
+                <ScalarProperty Name="TerminalActiveId" ColumnName="TerminalActiveId" />
+                <ScalarProperty Name="TerminalId" ColumnName="TerminalId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="UsrCrt" ColumnName="UsrCrt" />
+                <ScalarProperty Name="DtmCrt" ColumnName="DtmCrt" />
+                <ScalarProperty Name="UsrUpd" ColumnName="UsrUpd" />
+                <ScalarProperty Name="DtmUpd" ColumnName="DtmUpd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerminalConfigurations">
+            <EntityTypeMapping TypeName="TerminalModel.TerminalConfiguration">
+              <MappingFragment StoreEntitySet="TerminalConfiguration">
+                <ScalarProperty Name="TerminalConfigurationId" ColumnName="TerminalConfigurationId" />
+                <ScalarProperty Name="TerminalId" ColumnName="TerminalId" />
+                <ScalarProperty Name="TerminalCategory" ColumnName="TerminalCategory" />
+                <ScalarProperty Name="TerminalGroup" ColumnName="TerminalGroup" />
+                <ScalarProperty Name="TerminalDescription" ColumnName="TerminalDescription" />
+                <ScalarProperty Name="TerminalLocation" ColumnName="TerminalLocation" />
+                <ScalarProperty Name="IsAllergen" ColumnName="IsAllergen" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UsrCrt" ColumnName="UsrCrt" />
+                <ScalarProperty Name="DtmCrt" ColumnName="DtmCrt" />
+                <ScalarProperty Name="UsrUpd" ColumnName="UsrUpd" />
+                <ScalarProperty Name="DtmUpd" ColumnName="DtmUpd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TerminalModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserLoginCode" ColumnName="UserLoginCode" />
+                <ScalarProperty Name="UserLoginPin" ColumnName="UserLoginPin" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+                <ScalarProperty Name="UsrCrt" ColumnName="UsrCrt" />
+                <ScalarProperty Name="DtmCrt" ColumnName="DtmCrt" />
+                <ScalarProperty Name="UsrUpd" ColumnName="UsrUpd" />
+                <ScalarProperty Name="DtmUpd" ColumnName="DtmUpd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOQueues">
+            <EntityTypeMapping TypeName="TerminalModel.MOQueue">
+              <MappingFragment StoreEntitySet="MOQueue">
+                <ScalarProperty Name="DtmUpd" ColumnName="DtmUpd" />
+                <ScalarProperty Name="UsrUpd" ColumnName="UsrUpd" />
+                <ScalarProperty Name="DtmCrt" ColumnName="DtmCrt" />
+                <ScalarProperty Name="UsrCrt" ColumnName="UsrCrt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsPriority" ColumnName="IsPriority" />
+                <ScalarProperty Name="ExecuteDate" ColumnName="ExecuteDate" />
+                <ScalarProperty Name="MoNumber" ColumnName="MoNumber" />
+                <ScalarProperty Name="MOQueueId" ColumnName="MOQueueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OracleHeaders">
+            <EntityTypeMapping TypeName="TerminalModel.OracleHeader">
+              <MappingFragment StoreEntitySet="OracleHeader">
+                <ScalarProperty Name="DtmUpd" ColumnName="DtmUpd" />
+                <ScalarProperty Name="UsrUpd" ColumnName="UsrUpd" />
+                <ScalarProperty Name="DtmCrt" ColumnName="DtmCrt" />
+                <ScalarProperty Name="UsrCrt" ColumnName="UsrCrt" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="IsAllergen" ColumnName="IsAllergen" />
+                <ScalarProperty Name="IsClosedCode" ColumnName="IsClosedCode" />
+                <ScalarProperty Name="IsTimbang" ColumnName="IsTimbang" />
+                <ScalarProperty Name="SelfLife" ColumnName="SelfLife" />
+                <ScalarProperty Name="PackingSize" ColumnName="PackingSize" />
+                <ScalarProperty Name="CombineL2" ColumnName="CombineL2" />
+                <ScalarProperty Name="CombineL1" ColumnName="CombineL1" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="QtyPerCharge" ColumnName="QtyPerCharge" />
+                <ScalarProperty Name="UrutanTuang" ColumnName="UrutanTuang" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="ItemDescAlias" ColumnName="ItemDescAlias" />
+                <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Requestor" ColumnName="Requestor" />
+                <ScalarProperty Name="ShipTo" ColumnName="ShipTo" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+                <ScalarProperty Name="SourceType" ColumnName="SourceType" />
+                <ScalarProperty Name="DateRequired" ColumnName="DateRequired" />
+                <ScalarProperty Name="ToSubInventoryCode" ColumnName="ToSubInventoryCode" />
+                <ScalarProperty Name="FromSubInventoryCode" ColumnName="FromSubInventoryCode" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="MoNumber" ColumnName="MoNumber" />
+                <ScalarProperty Name="MOLineId" ColumnName="MOLineId" />
+                <ScalarProperty Name="MOHeaderId" ColumnName="MOHeaderId" />
+                <ScalarProperty Name="OracleHeaderId" ColumnName="OracleHeaderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

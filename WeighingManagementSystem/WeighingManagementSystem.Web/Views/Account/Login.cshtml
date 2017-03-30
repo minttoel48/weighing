@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OAN Tech - @ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    @Styles.Render("~/Content/css/styles.css")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery-ui.min.js")
+    @Scripts.Render("~/Scripts/plugins/bootstrap/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/plugins.js")
+    @Scripts.Render("~/Scripts/actions.js")
+</head>
+<body>
+    <div class="page-container">
+        <div class="page-content page-content-default">
+            <div class="block-login">
+                <div class="block-login-content">
+
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <h1>Sign in</h1>
+
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Username" value="" id="txtusername" />
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("dataRole", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="password" value="" id="txtpassword" />
+                        </div>
+
+                        <input class="btn btn-primary btn-block" type="submit" id="btnsignin" value="Sign in" />
+
+                        <div class="sp"></div>
+
+                        <p class="tac" id="txtstatuslogin" style="display:none;">@ViewBag.Message</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

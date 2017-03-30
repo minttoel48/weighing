@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WMS Online - @ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    @Styles.Render("~/Content/css/styles.css")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery/jquery-ui.min.js")
+    @Scripts.Render("~/Scripts/plugins/bootstrap/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js")
+    @Scripts.Render("~/Scripts/plugins/jquery-validation/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/plugins.js")
+    @Scripts.Render("~/Scripts/actions.js")
+</head>
+<body>
+    <div class="page-container">
+        <div class="page-content page-content-default">
+            <div class="block-login">
+                <div class="block-login-content">
+
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <h1>Sign in</h1>
+
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Username" value="" id="txtusername" />
+                        </div>
+                        <div class="form-group">
+                            @*@Html.DropDownList("dataRole", null, htmlAttributes: new { @class = "form-control" })*@
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="password" value="" id="txtpassword" />
+                        </div>
+
+                        <input class="btn btn-primary btn-block" type="submit" id="btnsignin" value="Sign in" />
+
+                        <div class="sp"></div>
+
+                        <p class="tac" id="txtstatuslogin" style="display:none;">-</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+		$("#signinForm").validate({
+		rules: {
+			login: "required",
+			password: "required"
+		},
+		messages: {
+			firstname: "Please enter your login",
+			lastname: "Please enter your password"
+		}
+		});
+
+		$(function () {
+
+			var chat = $.connection.hubAPI;
+			chat.client.ResponseLogin = function (LoginData) {
+
+				var json = JSON.parse(LoginData);
+
+				if (json.boolValid) {
+					window.location = "home";
+				}
+				else {
+					$('#txtstatuslogin').html(message);
+					$('#txtstatuslogin').show();
+				}
+			};
+
+			chat.client.ResponseGetRoleByUsername = function (RoleData) {
+
+				var json = JSON.parse(RoleData);
+
+				var output = '';
+				var $model = $('#selectRole');
+
+				console.log(json);
+
+				if (json.boolValid) {
+				    var listRole = json.listOfmUserRole;
+
+					$model.empty().append(function () {
+						var output = '';
+						for (i = 0; i < listRole.length ; i++) {
+							output += '<option value="' + listRole[i].intRoleId + '">' + listRole[i].txtRoleName + '</option>';
+						}
+						return output;
+					});
+				}
+			};
+
+			chat.client.responseTest = function (json) {
+			    var jsonParse = JSON.parse(json);
+
+			    console.log(jsonParse);
+			}
+
+			$('#txtusername').focus();
+			//$.connection.hub.start().done(function () {
+			//	$('#btnsignin').click(function () {
+			//	    //chat.server.login($("#txtusername").val(), $("#txtpassword").val(), $("#selectRole").val());
+			//	    //chat.server.getDataSPM($("#txtusername").val());
+			//	    chat.server.test();
+			//	});
+
+			//	$("#txtusername").bind("keypress", {}, keypressInBox);
+
+			//	function keypressInBox(e) {
+			//		var code = (e.keyCode ? e.keyCode : e.which);
+			//		if (code == 13) { //Enter keycode
+			//			e.preventDefault();
+			//			chat.server.getRoleByUsername($("#txtusername").val());
+			//		}
+			//	};
+			//});
+		});
+    </script>
+
+</body>
+</html>

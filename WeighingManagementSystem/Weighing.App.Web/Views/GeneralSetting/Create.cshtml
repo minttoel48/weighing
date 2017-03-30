@@ -1,0 +1,106 @@
+﻿@model Weighing.App.Web.ViewModels.GeneralSettingViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <div class="page-toolbar">
+
+        <div class="page-toolbar-block">
+            <div class="page-toolbar-title">@ViewBag.FormName</div>
+            <div class="page-toolbar-subtitle">@ViewBag.FormDescription</div>
+        </div>
+
+        @* === WEBSITE PATH === *@
+        @*<ul class="breadcrumb">
+                <li><a href="#">@ViewBag.FormName</a></li>
+                <li class="active">@ViewBag.ViewName</li>
+            </ul>*@
+
+        @* === BUTTON FORM === *@
+        <div class="page-toolbar-block pull-right">
+            <div class="widget-info widget-from">
+                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+                <a class="btn btn-danger" href="@Url.Content("~/GeneralSeting/Index")"><i class="fa fa-power-off"></i> Cancel</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-head">
+                    <h2>Add New @ViewBag.FormName</h2>
+                </div>
+                <div class="block-content controls">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row-form">
+                            <div class="col-md-3">
+                                <strong>
+                                    @Html.LabelFor(model => model.GeneralSettingId, htmlAttributes: new { @class = "control-label" })
+                                </strong>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.GeneralSettingId, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GeneralSettingId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="col-md-3">
+                                <strong>
+                                    @Html.LabelFor(model => model.GSCode, htmlAttributes: new { @class = "control-label" })
+                                </strong>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.GSCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GSCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="col-md-3">
+                                <strong>
+                                    @Html.LabelFor(model => model.GSKey, htmlAttributes: new { @class = "control-label" })
+                                </strong>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.GSKey, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GSKey, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="col-md-3">
+                                <strong>
+                                    @Html.LabelFor(model => model.GSValue, htmlAttributes: new { @class = "control-label" })
+                                </strong>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.GSValue, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GSValue, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @* === ADDITIONAL BUTTON (IF NEEDED) === *@
+                        @*<div class="row-form">
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                            </div>*@
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@*This View is Auto Generate by OanTech - April 2017*@

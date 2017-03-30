@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edcc8c93c32843d2bd10d306fc0a732a" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="PreparationModel.ItemLotMasterSequence" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreparationModel.OracleDetail" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreparationModel.OracleHeader" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="PreparationModel.FK_OracleDetail_OracleHeader" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PreparationModel.TaskTimbang" Width="1.5" PointX="3" PointY="6" />
+        <AssociationConnector Association="PreparationModel.FK_TaskTimbang_OracleHeader" />
+        <EntityTypeShape EntityType="PreparationModel.MOQueue" Width="1.5" PointX="5.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

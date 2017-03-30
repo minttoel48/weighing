@@ -1,0 +1,47 @@
+﻿@model Weighing.App.Web.ViewModels.GeneralSettingViewModel
+
+@{
+    ViewBag.Title = "Unauthorized Access";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    Html.AntiForgeryToken();
+    <div class="page-toolbar">
+
+        <div class="page-toolbar-block">
+            <div class="page-toolbar-title">NOT AUTHORIZED</div>
+            <div class="page-toolbar-subtitle">Sorry, you are not Autorized to access this page.</div>
+        </div>
+        @* === BUTTON FORM === *@
+        <div class="page-toolbar-block pull-right">
+            <div class="widget-info widget-from">
+                <a class="btn btn-danger" href="javascript:history.go(-1)"><i class="fa fa-power-off"></i> Back</a>
+                @Html.ActionLink("Lyubomir ", "ViewMessage", "Base", null, new { @class = "modal-link btn btn-success" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div style="width: 100%; height: 100%;" align="center">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <img src="~/Content/img/NotAuthorized.jpg" alt="Not Authorized" align="middle">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@*This View is Auto Generate by OanTech - April 2017*@

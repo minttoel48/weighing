@@ -1,0 +1,49 @@
+﻿<div class="modal-body">
+    @if (ViewBag.MessageType == "Error")
+    {
+        <div class="alert alert-warning">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            @ViewBag.Message
+        </div>
+    }
+    else if (ViewBag.MessageType == "Warning")
+    {
+        <div class="alert alert-warning">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            @ViewBag.Message
+        </div>
+    }
+    else if (ViewBag.MessageType == "Success")
+    {
+        <div class="alert alert-warning">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            @ViewBag.Message
+        </div>
+    }
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    </div>
+
+
+    @*@using (Html.BeginForm("Lyubomir", "Home", FormMethod.Post))
+    {
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <button type="submit" id="approve-btn" class="btn btn-danger">Save</button>
+            </div>
+        </div>
+    }*@
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#approve-btn').click(function () {
+            $('#modal-container').modal('hide');
+        });
+    });
+</script>
